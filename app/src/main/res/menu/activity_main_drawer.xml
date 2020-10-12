@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+
+        <item android:title="Información Personal">
+            <menu>
+                <item
+                    android:id="@+id/nav_perfil"
+                    android:icon="@drawable/avatar"
+                    android:title="Perfil" />
+            </menu>
+        </item>
+
+        <item android:title="Servicios">
+            <menu>
+                <item
+                    android:id="@+id/nav_new_service"
+                    android:icon="@drawable/truck"
+                    android:title="Nuevo Servicio" />
+                <item
+                    android:id="@+id/nav_historial"
+                    android:icon="@drawable/historial"
+                    android:title="Historial" />
+            </menu>
+        </item>
+
+    </group>
+    <item android:title="Contacto">
+        <menu>
+            <item
+                android:id="@+id/nav_support"
+                android:icon="@drawable/support"
+                android:title="Soporte" />
+        </menu>
+    </item>
+
+</menu>

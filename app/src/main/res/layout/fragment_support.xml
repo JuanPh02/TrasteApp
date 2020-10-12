@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/graylight">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="309dp"
+        android:layout_height="20dp"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/anton"
+        android:text="       servicios@trasteapp.com    |   432 12 34"
+        android:textSize="15sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="193dp"
+        android:layout_height="121dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/icon_trasteapp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        android:background="@android:color/white"
+        android:orientation="vertical"
+        android:paddingLeft="30dp"
+        android:paddingRight="30dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:textSize="16sp"
+            android:text="Llena el formulario y nos pondremos en contacto contigo lo mas pronto posible"
+            android:textAlignment="center" />
+
+        <EditText
+            android:id="@+id/sp_et_nombre"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:ems="10"
+            android:hint="Nombre"
+            android:inputType="textPersonName"
+            android:singleLine="true" />
+
+        <EditText
+            android:id="@+id/sp_et_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:ems="10"
+            android:hint="Email"
+            android:inputType="textEmailAddress"
+            android:singleLine="true" />
+
+        <EditText
+            android:id="@+id/sp_et_problema"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:ems="10"
+            android:hint="Problema"
+            android:inputType="text"
+            android:singleLine="true" />
+
+        <EditText
+            android:id="@+id/sp_et_detalle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:ems="10"
+            android:gravity="top|left"
+            android:hint="Detalles del problema"
+            android:inputType="textMultiLine"
+            android:scrollbars="vertical"
+            android:lines="8"
+            android:minLines="6"
+            android:singleLine="false" />
+
+        <Button
+            android:id="@+id/sp_btnEnviar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/button_rounded"
+            android:fontFamily="@font/allerta"
+            android:hint="Enviar"
+            android:textColor="@android:color/black"
+            android:textSize="16sp" />
+
+    </LinearLayout>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_whatsapp"
+        android:layout_width="46dp"
+        android:layout_height="49dp"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="@dimen/fab_margin"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/side_nav_bar"
+        android:foreground="@drawable/whatsapp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.985"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
