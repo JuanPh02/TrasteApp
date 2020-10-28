@@ -5,13 +5,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@android:color/white"
+    android:background="@drawable/background_medellin4"
     tools:context=".SplashActivity">
 
     <ImageView
-        android:layout_width="193dp"
-        android:layout_height="169dp"
-        android:src="@drawable/icon_trasteapp"
+        android:layout_width="285dp"
+        android:layout_height="254dp"
+        android:backgroundTint="@color/white_transparent"
+        android:src="@drawable/logo_extended"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

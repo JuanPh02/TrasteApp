@@ -23,11 +23,11 @@
 
             <ImageView
                 android:id="@+id/imageView"
-                android:layout_width="151dp"
-                android:layout_height="113dp"
+                android:layout_width="140dp"
+                android:layout_height="140dp"
                 android:layout_marginTop="-100dp"
                 android:layout_marginBottom="40dp"
-                android:src="@drawable/icon_trasteapp" />
+                android:src="@drawable/logo" />
 
             <EditText
                 android:id="@+id/etEmail"
@@ -37,29 +37,38 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="8dp"
                 android:textColor="@android:color/black"
+                android:fontFamily="@font/anton"
                 android:textColorHint="@android:color/black"
                 android:backgroundTint="@android:color/darker_gray"
                 android:drawableRight="@drawable/correo"
                 android:ems="10"
                 android:hint="Email"
-                android:inputType="textEmailAddress"
-                android:paddingLeft="5dp" />
+                android:inputType="textEmailAddress" />
 
-            <EditText
-                android:id="@+id/etPassword"
+            <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="8dp"
                 android:textColor="@android:color/black"
                 android:textColorHint="@android:color/black"
                 android:backgroundTint="@android:color/darker_gray"
-                android:drawableRight="@drawable/llave"
-                android:ems="10"
+                android:paddingStart="7dp"
                 android:hint="Password"
-                android:inputType="textPassword"
-                android:paddingLeft="5dp" />
+                android:paddingEnd="5dp"
+                app:passwordToggleEnabled="true">
+
+                <EditText
+                    android:id="@+id/etPassword"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:ems="10"
+                    android:textColor="@android:color/black"
+                    android:textColorHint="@android:color/black"
+                    android:backgroundTint="@android:color/darker_gray"
+                    android:fontFamily="@font/anton"
+                    android:inputType="textPassword" />
+
+            </com.google.android.material.textfield.TextInputLayout>
 
             <Button
                 android:id="@+id/btnLogin"
@@ -74,7 +83,7 @@
                 android:textSize="18sp" />
 
             <Button
-                android:id="@+id/btnRegistrarse"
+                android:id="@+id/btn_Registrarse"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"

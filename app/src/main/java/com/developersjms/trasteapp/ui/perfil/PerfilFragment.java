@@ -3,7 +3,10 @@ package com.developersjms.trasteapp.ui.perfil;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,14 +21,29 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+import com.developersjms.trasteapp.MainActivity;
 import com.developersjms.trasteapp.R;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.Calendar;
+import java.util.HashMap;
+import java.util.Map;
 
 public class PerfilFragment extends Fragment {
 
-    RadioGroup rgTipoDoc;
-    EditText et_doc, et_nombre, et_fecha, et_telefono, et_email;
+    EditText etNombres, etApellidos, etFechaNacimiento, etEmail, etTelefono, etPassword;
+    String nombres, apellidos, fechaNacimiento, email, telefono, pass;
     Button btnActualizar;
     private ProgressDialog progress;
 
@@ -35,8 +53,11 @@ public class PerfilFragment extends Fragment {
         /*realtimeDatabase = new RealtimeDatabase(getContext());
         user = FirebaseAuth.getInstance().getCurrentUser();*/
         conectar(view);
+        recuperarPreferenciasLogin();
+        //Toast.makeText(getContext(),"email -> " + email,Toast.LENGTH_LONG).show();
+        //leerPerfil("http://192.168.0.108/trasteapp/leer_perfil.php?email=" + email.trim());
 
-        et_fecha.setOnClickListener(new View.OnClickListener() {
+        etFechaNacimiento.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 showDatePickerDialog();
@@ -92,43 +113,62 @@ public class PerfilFragment extends Fragment {
         return view;
     }
 
-    private void actualizar() throws Exception {
-        int refTipoDoc;
-        String tipoDoc = "", docId, nombres, fechaNac, telefono, email, contraseña;
-        if (rgTipoDoc.getCheckedRadioButtonId() != -1) {
-            refTipoDoc = rgTipoDoc.getCheckedRadioButtonId();
-            tipoDoc = (refTipoDoc == R.id.rbCedula) ? "Cedula" : "Nit";
-        }
-        docId = et_doc.getText().toString();
-        nombres = et_nombre.getText().toString();
-        fechaNac = et_fecha.getText().toString();
-        telefono = et_telefono.getText().toString();
-        email = et_email.getText().toString();
+    private void recuperarPreferenciasLogin() {
+        SharedPreferences preferences = getActivity().getSharedPreferences("preferenciasLogin", Context.MODE_PRIVATE);
+        //etEmail.setText(preferences.getString("email",""));
+        email = preferences.getString("email","");
+        //etPassword.setText(preferences.getString("password",""));
+    }
 
-        /*if (tipoDoc.isEmpty() || docId.isEmpty() || nombres.isEmpty() || fechaNac.isEmpty() || telefono.isEmpty()
-                || email.isEmpty()) {
-            Toasty.warning(getContext(), "Por favor llene todos los campos", Toasty.LENGTH_LONG).show();
-        } else {
-            Usuario usuario = new Usuario();
-            usuario.setTipoDoc(tipoDoc);
-            usuario.setDocId(docId);
-            usuario.setNombres(nombres);
-            usuario.setFechaNac(fechaNac);
-            usuario.setTelefono(telefono);
-            usuario.setEmail(email);
-            realtimeDatabase.updateUser(user.getUid(), usuario);
-            Toasty.success(getContext(), "Los datos se han actualizado con éxito", Toasty.LENGTH_LONG).show();
-        }*/
+    private void leerPerfil(String URL) {
+        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(URL, new Response.Listener<JSONArray>() {
+            @Override
+            public void onResponse(JSONArray response) {
+                JSONObject jsonObject = null;
+                for (int i = 0; i < response.length(); i++) {
+                    try {
+                        jsonObject = response.getJSONObject(i);
+                        //etNombres.setText(jsonObject.getString("nombres"));
+                        //etApellidos.setText(jsonObject.getString("apellidos"));
+                        //etFechaNacimiento.setText(jsonObject.getString("fechaNacimiento"));
+                        //etEmail.setText(jsonObject.getString("email"));
+                        //etTelefono.setText(jsonObject.getString("telefono"));
+                        //etPassword.setText(jsonObject.getString("pass"));
+                        nombres = jsonObject.getString("nombres");
+                        Toast.makeText(getContext(),"nombres -> " + nombres, Toast.LENGTH_LONG).show();
+                    } catch (JSONException e) {
+                        Toast.makeText(getContext(),"ERROR -> " + e.getMessage(),Toast.LENGTH_LONG).show();
+                    }
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(getContext(),"ERROR -> " + error.toString(),Toast.LENGTH_LONG).show();
+            }
+        });
+
+        RequestQueue requestQueue = Volley.newRequestQueue(getContext());
+        requestQueue.add(jsonArrayRequest);
+    }
+
+    private void actualizar() throws Exception {
+        nombres = etNombres.getText().toString().trim();
+        apellidos = etApellidos.getText().toString().trim();
+        fechaNacimiento = etFechaNacimiento.getText().toString().trim();
+        email = etEmail.getText().toString().trim();
+        telefono = etTelefono.getText().toString().trim();
+        pass = etPassword.getText().toString().trim();
 
     }
 
     private void conectar(View view) {
-        rgTipoDoc = view.findViewById(R.id.rgTipoDoc);
-        et_doc = view.findViewById(R.id.et_doc);
-        et_nombre = view.findViewById(R.id.et_nombre);
-        et_fecha = view.findViewById(R.id.et_fecha);
-        et_telefono = view.findViewById(R.id.et_telefono);
-        et_email = view.findViewById(R.id.et_email);
+        etNombres = view.findViewById(R.id.p_etNombres);
+        etApellidos = view.findViewById(R.id.p_etApellidos);
+        etFechaNacimiento = view.findViewById(R.id.p_etFechaNacimiento);
+        etEmail = view.findViewById(R.id.p_etEmail);
+        etTelefono = view.findViewById(R.id.p_etTelefono);
+        etPassword = view.findViewById(R.id.p_etPassword);
         btnActualizar = view.findViewById(R.id.btnActualizar);
     }
 
@@ -169,9 +209,9 @@ public class PerfilFragment extends Fragment {
             @Override
             public void onDateSet(DatePicker view, int dayOfMonth, int monthOfYear, int year) {
 
-                String fecha = twoDigits(year) + "/" + twoDigits(monthOfYear + 1)
-                        + "/" + twoDigits(dayOfMonth);
-                et_fecha.setText(fecha);
+                String fecha = twoDigits(dayOfMonth) + "-" + twoDigits(monthOfYear + 1)
+                + "-" + twoDigits(year);
+                etFechaNacimiento.setText(fecha);
             }
         }, yy, mm, dd);
 

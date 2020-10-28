@@ -19,6 +19,8 @@ import com.developersjms.trasteapp.MensajeSoporte;
 import com.developersjms.trasteapp.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import es.dmoral.toasty.Toasty;
+
 
 public class SupportFragment extends Fragment {
 
@@ -33,6 +35,14 @@ public class SupportFragment extends Fragment {
         conectar(root);
         //realtimeDatabase = new RealtimeDatabase(getContext());
         //cargarDatos();
+
+        btnEnviar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toasty.success(getContext(),"Mensaje de soporte enviado correctamente",Toasty.LENGTH_LONG).show();
+                limpiarCampos();
+            }
+        });
 
         /*btnEnviar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -72,14 +82,14 @@ public class SupportFragment extends Fragment {
             }
         });*/
 
-        fab_whatsapp.setOnClickListener(new View.OnClickListener() {
+        /*fab_whatsapp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Uri uri = Uri.parse("https://api.whatsapp.com/send?phone=573013544092&text=Hola!%20Necesito%20ayuda%20para%20solicitar%20un%20trasteo%20.%20%E2%9C%8B%F0%9F%9A%9A");
                 Intent intent = new Intent(Intent.ACTION_VIEW, uri);
                 startActivity(intent);
             }
-        });
+        });*/
 
         return root;
     }
@@ -106,6 +116,6 @@ public class SupportFragment extends Fragment {
         etProblema = root.findViewById(R.id.sp_et_problema);
         etDetalles = root.findViewById(R.id.sp_et_detalle);
         btnEnviar = root.findViewById(R.id.sp_btnEnviar);
-        fab_whatsapp = root.findViewById(R.id.fab_whatsapp);
+        //fab_whatsapp = root.findViewById(R.id.fab_whatsapp);
     }
 }

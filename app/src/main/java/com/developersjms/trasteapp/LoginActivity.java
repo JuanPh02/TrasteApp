@@ -25,8 +25,8 @@ import java.util.Map;
 public class LoginActivity extends AppCompatActivity {
 
     EditText etEmail, etPassword;
-    Button btnLogin;
-    String email, password;
+    Button btnLogin, btnRegistrarse;
+    String email, pass;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,14 +37,20 @@ public class LoginActivity extends AppCompatActivity {
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                /*email = etEmail.getText().toString();
-                password = etPassword.getText().toString();
-                if (!email.isEmpty() && !password.isEmpty()) {
-                    validarUsuario("http://192.168.0.108/test/validar_usuario.php");
+                email = etEmail.getText().toString().trim();
+                pass = etPassword.getText().toString().trim();
+                if (!email.isEmpty() && !pass.isEmpty()) {
+                    validarUsuario("http://192.168.0.108/trasteapp/validar_usuario.php");
                 } else {
                     Toast.makeText(getApplicationContext(),"No se permiten campos vacios",Toast.LENGTH_SHORT).show();
-                }*/
-                startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                }
+            }
+        });
+
+        btnRegistrarse.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), RegistroActivity.class));
             }
         });
     }
@@ -56,6 +62,7 @@ public class LoginActivity extends AppCompatActivity {
                 if(!response.isEmpty()) {
                     guardarPreferencias();
                     startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                    finish();
                 } else {
                     Toast.makeText(getApplicationContext(), "Usuario o contraseña incorrecta", Toast.LENGTH_SHORT).show();
                 }
@@ -70,7 +77,7 @@ public class LoginActivity extends AppCompatActivity {
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> parametros = new HashMap<String, String>();
                 parametros.put("email", email);
-                parametros.put("password", password);
+                parametros.put("pass", pass);
                 return parametros;
             }
         };
@@ -83,7 +90,7 @@ public class LoginActivity extends AppCompatActivity {
         SharedPreferences preferences = getSharedPreferences("preferenciasLogin", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = preferences.edit();
         editor.putString("email", email);
-        editor.putString("password", password);
+        editor.putString("password", pass);
         editor.putBoolean("sesion", true);
         editor.commit();
     }
@@ -98,5 +105,6 @@ public class LoginActivity extends AppCompatActivity {
         etEmail = findViewById(R.id.etEmail);
         etPassword = findViewById(R.id.etPassword);
         btnLogin = findViewById(R.id.btnLogin);
+        btnRegistrarse = findViewById(R.id.btn_Registrarse);
     }
 }

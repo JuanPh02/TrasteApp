@@ -6,22 +6,12 @@
     android:layout_height="match_parent"
     android:background="@color/graylight">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="309dp"
-        android:layout_height="20dp"
-        android:layout_marginTop="8dp"
-        android:fontFamily="@font/anton"
-        android:text="       servicios@trasteapp.com    |   432 12 34"
-        android:textSize="15sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView2" />
 
     <ImageView
         android:id="@+id/imageView2"
         android:layout_width="193dp"
         android:layout_height="121dp"
+        android:layout_marginTop="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -38,15 +28,15 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView">
+        app:layout_constraintTop_toBottomOf="@+id/imageView2">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:textSize="16sp"
             android:text="Llena el formulario y nos pondremos en contacto contigo lo mas pronto posible"
-            android:textAlignment="center" />
+            android:textAlignment="center"
+            android:textSize="16sp" />
 
         <EditText
             android:id="@+id/sp_et_nombre"
@@ -87,9 +77,9 @@
             android:gravity="top|left"
             android:hint="Detalles del problema"
             android:inputType="textMultiLine"
-            android:scrollbars="vertical"
             android:lines="8"
             android:minLines="6"
+            android:scrollbars="vertical"
             android:singleLine="false" />
 
         <Button
@@ -105,18 +95,6 @@
 
     </LinearLayout>
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fab_whatsapp"
-        android:layout_width="46dp"
-        android:layout_height="49dp"
-        android:layout_gravity="bottom|end"
-        android:layout_margin="@dimen/fab_margin"
-        android:layout_marginBottom="16dp"
-        android:background="@drawable/side_nav_bar"
-        android:foreground="@drawable/whatsapp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.985"
-        app:layout_constraintStart_toStartOf="parent" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
