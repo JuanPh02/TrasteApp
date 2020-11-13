@@ -1,8 +1,11 @@
 package com.developersjms.trasteapp;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Menu;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -20,6 +23,8 @@ import androidx.appcompat.widget.Toolbar;
 public class MainActivity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
+    NavigationView navigationView;
+    TextView tvName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
-        NavigationView navigationView = findViewById(R.id.nav_view);
+        navigationView = findViewById(R.id.nav_view);
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
@@ -41,6 +46,21 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
         navigationView.setItemIconTintList(null);
+        conectar();
+        recuperarPreferencias();
+    }
+
+    private void recuperarPreferencias() {
+        SharedPreferences preferences = getSharedPreferences("preferenciasUsuario", Context.MODE_PRIVATE);
+        String name = preferences.getString("nombres","");
+        String apellidos = preferences.getString("apellidos","");
+        tvName.setText(name + " " + apellidos);
+    }
+
+    private void conectar() {
+        View hView = navigationView.getHeaderView(0);
+        tvName = hView.findViewById(R.id.nav_header_tvNombre);
+
     }
 
     @Override

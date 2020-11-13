@@ -9,7 +9,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -39,6 +41,8 @@ public class HistorialFragment extends Fragment {
     ArrayList<Ciudad> ciudades;
     ListViewAdapterActivos adapter;
     ListView listView;
+    TextView tvAlert;
+    ImageView imgAlert;
     int idUsuario;
     ProgressDialog progressDialog;
     RequestQueue requestQueue;
@@ -95,19 +99,21 @@ public class HistorialFragment extends Fragment {
                             idVehiculo = jsonObject.getInt("idVehiculo");
                         }
                         mudanzas.add(new Mudanza(idMudanza,idConductor,idVehiculo,idCiudadPartida,direccionPartida,idCiudadDestino,direccionDestino,fechaHora,descripcionObjetos,estado,precio));
-                        //Toasty.warning(getContext(),"idMudanza -> " + idMudanza + " idCiPar -> " + idCiudadPartida + " idCiDes -> " + idCiudadDestino + " estado -> " + estado,Toasty.LENGTH_LONG).show();
                     }
                     adapter = new ListViewAdapterActivos(getContext(), mudanzas, ciudades);
                     listView.setAdapter(adapter);
                 } catch (JSONException e) {
-                    Toasty.warning(getContext(),"Error hp--> " + e.getMessage(), Toasty.LENGTH_LONG).show();
+                    Toasty.warning(getContext(),"Error--> " + e.getMessage(), Toasty.LENGTH_LONG).show();
                     e.printStackTrace();
                 }
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(getContext(),"ERROR -> " + error.toString(),Toast.LENGTH_LONG).show();
+                Toasty.warning(getContext(),"Solicita tu primer servicio y aquí podrás consultarlo", Toasty.LENGTH_LONG).show();
+                tvAlert.setText("No hay registros");
+                listView.setEmptyView(tvAlert);
+                imgAlert.setVisibility(View.VISIBLE);
             }
         });
         requestQueue.add(jsonArrayRequest);
@@ -143,5 +149,7 @@ public class HistorialFragment extends Fragment {
 
     private void conectar(View root) {
         listView = root.findViewById(R.id.lvActiveServices);
+        tvAlert = root.findViewById(R.id.tvAlertLv);
+        imgAlert = root.findViewById(R.id.imgAlert);
     }
 }

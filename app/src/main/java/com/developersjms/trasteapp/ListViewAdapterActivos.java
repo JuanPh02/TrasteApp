@@ -25,6 +25,8 @@ public class ListViewAdapterActivos extends BaseAdapter {
         this.ciudades = ciudades;
     }
 
+
+
     @Override
     public int getCount() {
         return lstMudanzas.size();
