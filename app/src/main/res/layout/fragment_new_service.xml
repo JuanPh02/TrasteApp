@@ -3,9 +3,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@android:color/white"
+    android:paddingStart="5dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.newservice.NewServiceFragment">
-
 
     <LinearLayout
         android:id="@+id/linearLayout3"
@@ -15,15 +16,15 @@
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView3">
+        app:layout_constraintTop_toBottomOf="@+id/imageView4">
 
         <TextView
             android:id="@+id/tv7"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="25dp"
+            android:layout_marginStart="15dp"
             android:fontFamily="@font/anton"
-            android:text="Capacidad de vehiculo:"
+            android:text="Capacidad vehiculo:"
             android:textSize="15sp"
             tools:layout_editor_absoluteX="32dp"
             tools:layout_editor_absoluteY="239dp" />
@@ -32,7 +33,7 @@
             android:id="@+id/tr_spCapacidadVehiculo"
             android:layout_width="215dp"
             android:layout_height="32dp"
-            android:layout_marginStart="30dp"
+            android:layout_marginStart="25dp"
             android:entries="@array/tipoVehiculos"
             tools:layout_editor_absoluteX="164dp"
             tools:layout_editor_absoluteY="236dp" />
@@ -53,7 +54,7 @@
             android:id="@+id/tv10"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="25dp"
+            android:layout_marginStart="15dp"
             android:fontFamily="@font/anton"
             android:text="Ciudad Cargue:"
             android:textSize="15sp"
@@ -64,8 +65,7 @@
             android:id="@+id/tr_spCiudadCargue"
             android:layout_width="215dp"
             android:layout_height="32dp"
-            android:layout_marginStart="50dp"
-            android:entries="@array/ciudades"
+            android:layout_marginStart="55dp"
             tools:layout_editor_absoluteX="164dp"
             tools:layout_editor_absoluteY="236dp" />
 
@@ -85,7 +85,7 @@
             android:id="@+id/tv11"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="25dp"
+            android:layout_marginStart="15dp"
             android:fontFamily="@font/anton"
             android:text="Ciudad Descargue:"
             android:textSize="15sp"
@@ -96,8 +96,7 @@
             android:id="@+id/tr_spCiudadDescargue"
             android:layout_width="215dp"
             android:layout_height="32dp"
-            android:layout_marginStart="30dp"
-            android:entries="@array/ciudades"
+            android:layout_marginStart="35dp"
             tools:layout_editor_absoluteX="164dp"
             tools:layout_editor_absoluteY="236dp" />
 
@@ -117,7 +116,7 @@
             android:id="@+id/tv5"
             android:layout_width="104dp"
             android:layout_height="45dp"
-            android:layout_marginStart="25dp"
+            android:layout_marginStart="15dp"
             android:fontFamily="@font/anton"
             android:text="Direccion de cargue:"
             android:textSize="15sp"
@@ -153,7 +152,7 @@
             android:id="@+id/tv6"
             android:layout_width="107dp"
             android:layout_height="51dp"
-            android:layout_marginStart="25dp"
+            android:layout_marginStart="15dp"
             android:fontFamily="@font/anton"
             android:text="Direccion de descargue:"
             android:textSize="15sp"
@@ -189,7 +188,7 @@
             android:id="@+id/tv2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="25dp"
+            android:layout_marginStart="15dp"
             android:fontFamily="@font/anton"
             android:text="Fecha del trasteo:"
             android:textSize="15sp"
@@ -200,7 +199,7 @@
             android:id="@+id/tr_etFecha"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="40dp"
+            android:layout_marginStart="30dp"
             android:clickable="true"
             android:focusable="false"
             android:ems="10"
@@ -224,7 +223,7 @@
             android:id="@+id/tv3"
             android:layout_width="107dp"
             android:layout_height="27dp"
-            android:layout_marginStart="25dp"
+            android:layout_marginStart="15dp"
             android:fontFamily="@font/anton"
             android:text="Hora del trasteo:"
             android:textSize="15sp"
@@ -260,7 +259,7 @@
             android:layout_height="51dp"
             android:fontFamily="@font/anton"
             android:textSize="15sp"
-            android:layout_marginStart="25dp"
+            android:layout_marginStart="15dp"
             android:text="Descripción de objetos:"
             tools:layout_editor_absoluteX="32dp"
             tools:layout_editor_absoluteY="580dp" />
@@ -280,33 +279,40 @@
 
     </LinearLayout>
 
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/anton"
+        android:gravity="center"
+        android:textColor="@android:color/black"
+        android:text="Solicitud de servicio"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/imageView4"
-        android:layout_width="141dp"
-        android:layout_height="135dp"
-        android:layout_marginStart="36dp"
-        android:src="@drawable/icon_trasteapp"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView3"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <ImageView
-        android:id="@+id/imageView3"
-        android:layout_width="157dp"
-        android:layout_height="121dp"
-        android:layout_marginTop="28dp"
-        android:layout_marginEnd="24dp"
-        android:src="@drawable/truck"
+        android:layout_width="318dp"
+        android:layout_height="84dp"
+        android:src="@drawable/logo_extended"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
     <Button
         android:id="@+id/tr_btnConfirmar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
-        android:background="@drawable/button_rounded"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:background="@drawable/button_rounded_black"
         android:text="Confirmar"
+        android:fontFamily="@font/anton"
+        android:textColor="@android:color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout6" />

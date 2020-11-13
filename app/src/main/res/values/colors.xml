@@ -6,4 +6,9 @@
     <color name="graylight">#DEDEDE </color>
     <color name="yellow">#EEEB3A</color>
     <color name="white_transparent">#70DEDEDE</color>
+    <color name="black_transparent">#95000000</color>
+    <color name="yellow_dark">#FBBD02</color>
+    <color name="red">#9E0106</color>
+    <color name="green">#41BA00</color>
+    <color name="blue">#002FBA</color>
 </resources>

@@ -25,12 +25,14 @@ import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
+import es.dmoral.toasty.Toasty;
+
 public class RegistroActivity extends AppCompatActivity {
 
     EditText etNombres, etApellidos, etFechaNacimiento, etEmail, etTelefono, etPassword;
     Button btnBack, btnRegistrarse;
     String nombres, apellidos, fechaNacimiento, email, telefono, pass;
-    ProgressBar progressBar;
+    ProgressDialog progressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,14 +66,19 @@ public class RegistroActivity extends AppCompatActivity {
 
                 if(!nombres.isEmpty() && !apellidos.isEmpty() && !fechaNacimiento.isEmpty() && !email.isEmpty()
                         && !telefono.isEmpty() && !pass.isEmpty()) {
-                    progressBar.setActivated(true);
-                    progressBar.setVisibility(View.VISIBLE);
-                    registrarUsuario("http://192.168.0.108/trasteapp/insertar_usuario.php");
+                    registrarUsuario();
                 } else {
-                    Toast.makeText(getApplicationContext(),"Hay campos vacios. Debe llenar todos los campos",Toast.LENGTH_SHORT).show();
+                    Toasty.warning(getApplicationContext(),"Hay campos vacios. Debe llenar todos los campos",Toast.LENGTH_LONG).show();
                 }
             }
         });
+    }
+
+    private void registrarUsuario() {
+        progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage("Registrando...");
+        progressDialog.show();
+        registrarUsuario("http://192.168.0.108/trasteapp/insertar_usuario.php");
     }
 
     private void registrarUsuario(String URL) {
@@ -79,19 +86,18 @@ public class RegistroActivity extends AppCompatActivity {
             @Override
             public void onResponse(String response) {
                 if(response.equalsIgnoreCase("Correct")) {
-                    Toast.makeText(getApplicationContext(),"Se ha realizado el registro correctamente. Ya puede loguearse",Toast.LENGTH_SHORT).show();
+                    Toasty.success(getApplicationContext(), "Se ha realizado el registro correctamente. Ya puede loguearse", Toast.LENGTH_LONG).show();
+                    limpiarCampos();
                 } else {
-                    Toast.makeText(getApplicationContext(), "Se ha producido un error al intentar realizar el registro", Toast.LENGTH_SHORT).show();
+                    Toasty.error(getApplicationContext(), "Se ha producido un error al intentar realizar el registro", Toast.LENGTH_SHORT).show();
                 }
-                progressBar.setActivated(false);
-                progressBar.setVisibility(View.INVISIBLE);
+                progressDialog.dismiss();
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(getApplicationContext(),"ERROR -> " + error.getMessage(),Toast.LENGTH_SHORT).show();
-                progressBar.setActivated(false);
-                progressBar.setVisibility(View.INVISIBLE);
+                Toasty.error(getApplicationContext(),"ERROR -> " + error.getMessage(),Toast.LENGTH_SHORT).show();
+                progressDialog.dismiss();
             }
         }) {
             @Override
@@ -117,7 +123,7 @@ public class RegistroActivity extends AppCompatActivity {
         int mm = calendario.get(Calendar.MONTH);
         int yy = calendario.get(Calendar.YEAR);
 
-        DatePickerDialog datePicker = new DatePickerDialog(getApplicationContext(), new DatePickerDialog.OnDateSetListener() {
+        DatePickerDialog datePicker = new DatePickerDialog(RegistroActivity.this, new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker view, int dayOfMonth, int monthOfYear, int year) {
 
@@ -126,12 +132,20 @@ public class RegistroActivity extends AppCompatActivity {
                 etFechaNacimiento.setText(fecha);
             }
         }, yy, mm, dd);
-
         datePicker.show();
     }
 
     private String twoDigits(int n) {
         return (n <= 9) ? ("0" + n) : String.valueOf(n);
+    }
+
+    private void limpiarCampos() {
+        etNombres.setText("");
+        etApellidos.setText("");
+        etFechaNacimiento.setText("");
+        etEmail.setText("");
+        etTelefono.setText("");
+        etPassword.setText("");
     }
 
     private void conectar() {
@@ -141,7 +155,6 @@ public class RegistroActivity extends AppCompatActivity {
         etEmail = findViewById(R.id.etEmail);
         etTelefono = findViewById(R.id.etTelefono);
         etPassword = findViewById(R.id.etPassword);
-        progressBar = findViewById(R.id.progressBar);
         btnBack = findViewById(R.id.btnBack);
         btnRegistrarse = findViewById(R.id.btnRegistrarse);
     }

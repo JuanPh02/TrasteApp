@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
+    android:paddingStart="20dp"
     android:orientation="horizontal"
     android:padding="5dp">
 
@@ -22,14 +23,16 @@
 
     <TextView
         android:id="@+id/lrsa_tvPrecio"
-        android:layout_width="85dp"
+        android:layout_width="wrap_content"
         android:layout_height="29dp"
+        android:layout_marginStart="32dp"
         android:layout_marginTop="10dp"
         android:fontFamily="@font/anton"
         android:text="$ 450.000"
-        android:textSize="16sp"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="313dp" />
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/lrsa_tvEstado"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/lrsa_tvEstado"
@@ -38,10 +41,10 @@
         android:layout_marginTop="8dp"
         android:fontFamily="@font/anton"
         android:text="Solicitado"
-        android:textColor="@color/yellow"
+        android:textColor="@android:color/holo_green_dark"
         android:textSize="16sp"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="170dp" />
+        app:layout_constraintStart_toEndOf="@+id/lrsa_tvId"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
         android:id="@+id/linearLayout"

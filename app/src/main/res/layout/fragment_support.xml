@@ -15,7 +15,18 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/icon_trasteapp" />
+        app:srcCompat="@drawable/logo_tapp_black" />
+
+    <TextView
+        android:id="@+id/tvInfo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/anton"
+        android:gravity="center"
+        android:text="info@trasteapp.com  |  321 12 34 "
+        android:textColor="@android:color/black"
+        android:textSize="20sp"
+        app:layout_constraintTop_toBottomOf="@+id/imageView2" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -28,7 +39,50 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView2">
+        app:layout_constraintTop_toBottomOf="@+id/tvInfo">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/btn_w"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/whatsapp"/>
+
+            <ImageButton
+                android:id="@+id/btn_i"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_marginStart="10dp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/instagram"/>
+
+            <ImageButton
+                android:id="@+id/btn_f"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_marginStart="10dp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/facebook"/>
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:fontFamily="@font/anton"
+            android:gravity="center"
+            android:textColor="@android:color/black"
+            android:text="El soporte que necesitas"
+            android:textSize="20sp" />
 
         <TextView
             android:layout_width="match_parent"
@@ -38,41 +92,27 @@
             android:textAlignment="center"
             android:textSize="16sp" />
 
-        <EditText
-            android:id="@+id/sp_et_nombre"
+        <Spinner
+            android:id="@+id/sp_spTipoProblemas"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:ems="10"
-            android:hint="Nombre"
-            android:inputType="textPersonName"
-            android:singleLine="true" />
+            android:inputType="text"/>
 
-        <EditText
-            android:id="@+id/sp_et_email"
+        <Spinner
+            android:id="@+id/sp_spMudanzas"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:ems="10"
-            android:hint="Email"
-            android:inputType="textEmailAddress"
-            android:singleLine="true" />
+            android:inputType="text"/>
 
         <EditText
-            android:id="@+id/sp_et_problema"
+            android:id="@+id/sp_etDescripcion"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:ems="10"
-            android:hint="Problema"
-            android:inputType="text"
-            android:singleLine="true" />
-
-        <EditText
-            android:id="@+id/sp_et_detalle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="10dp"
             android:ems="10"
             android:gravity="top|left"
             android:hint="Detalles del problema"
@@ -87,14 +127,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:background="@drawable/button_rounded"
-            android:fontFamily="@font/allerta"
-            android:hint="Enviar"
-            android:textColor="@android:color/black"
-            android:textSize="16sp" />
+            android:background="@drawable/button_rounded_blue"
+            android:fontFamily="@font/anton"
+            android:text="Enviar"
+            android:textColor="@android:color/white" />
 
     </LinearLayout>
-
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>

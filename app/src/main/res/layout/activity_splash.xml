@@ -5,12 +5,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@drawable/background_medellin4"
+    android:background="@android:color/white"
     tools:context=".SplashActivity">
 
     <ImageView
-        android:layout_width="285dp"
-        android:layout_height="254dp"
+        android:layout_width="376dp"
+        android:layout_height="354dp"
         android:backgroundTint="@color/white_transparent"
         android:src="@drawable/logo_extended"
         app:layout_constraintBottom_toBottomOf="parent"
